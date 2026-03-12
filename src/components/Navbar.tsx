@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { cn } from "../lib/utils";
+import { Logo } from "./Logo";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -47,12 +48,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-gold-500 rounded flex items-center justify-center text-navy-900 font-serif font-bold text-xl group-hover:bg-gold-400 transition-colors">
-              KT
-            </div>
-            <span className="text-white font-serif font-bold text-xl tracking-wider">
-              KING TRUST
-            </span>
+            <Logo className="h-20 w-auto -my-2 relative z-10" />
           </Link>
 
           {/* Desktop Menu */}

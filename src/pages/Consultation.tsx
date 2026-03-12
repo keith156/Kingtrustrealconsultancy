@@ -31,7 +31,7 @@ export function ConsultationPage() {
       <div className="bg-navy-900 text-white pt-32 pb-20 px-4 mb-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
             alt="Consultation"
             className="w-full h-full object-cover"
           />

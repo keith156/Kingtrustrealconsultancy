@@ -9,6 +9,7 @@ import {
   Phone,
   Mail,
 } from "lucide-react";
+import { Logo } from "./Logo";
 
 export function Footer() {
   const [showLogin, setShowLogin] = useState(false);
@@ -37,12 +38,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gold-500 rounded flex items-center justify-center text-navy-900 font-serif font-bold text-xl">
-                KT
-              </div>
-              <span className="text-white font-serif font-bold text-xl tracking-wider">
-                KING TRUST
-              </span>
+              <Logo className="h-20 w-auto" />
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
               Premium Ugandan real estate, vehicle, and business consultancy.

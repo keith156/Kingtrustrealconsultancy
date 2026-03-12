@@ -17,7 +17,7 @@ const services = [
     title: "Vehicle Sales & Management",
     desc: "Premium buying, selling, and management of vehicles. We source high-quality new and used cars, SUVs, and trucks, ensuring transparency and value in every transaction.",
     image:
-      "https://images.unsplash.com/photo-1503376760367-11ea8f6008eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80",
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     link: "/vehicles",
   },
   {
@@ -26,7 +26,7 @@ const services = [
     title: "Real Estate & Property Management",
     desc: "Discover your dream home, secure prime commercial properties, or invest in land. Our comprehensive property management services ensure your assets are well-maintained and profitable.",
     image:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
     link: "/properties",
   },
   {
@@ -35,7 +35,7 @@ const services = [
     title: "Apartments",
     desc: "Curated listings of luxury short and long-stay apartments. Whether you need a temporary executive suite or a permanent residence, we have the perfect space for you.",
     image:
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     link: "/properties",
   },
   {
@@ -44,7 +44,7 @@ const services = [
     title: "Tours & Travel",
     desc: "Experience the Pearl of Africa. We offer exclusive destination packages across Uganda and beyond, handling everything from itineraries to accommodation and transport.",
     image:
-      "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80",
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     link: "/tours",
   },
   {
@@ -53,7 +53,7 @@ const services = [
     title: "Construction",
     desc: "Expert residential and commercial construction services. From architectural design to final execution, we build structures that stand the test of time.",
     image:
-      "https://images.unsplash.com/photo-1541888086925-0c13d4f47c54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80",
+      "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     link: "/contact",
   },
   {
@@ -62,7 +62,7 @@ const services = [
     title: "Business Consultancy",
     desc: "Strategic advisory for your business success. We provide feasibility studies, business setup assistance, and expert guidance to navigate the Ugandan market.",
     image:
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80",
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     link: "/contact",
   },
 ];

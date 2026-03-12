@@ -27,7 +27,7 @@ export function ToursPage() {
       <div className="relative h-[60vh] flex items-center justify-center mb-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80"
+            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
             alt="Uganda Landscape"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
