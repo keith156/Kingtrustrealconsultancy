@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Facebook,
   Instagram,
@@ -10,6 +11,25 @@ import {
 } from "lucide-react";
 
 export function Footer() {
+  const [showLogin, setShowLogin] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (username === "admin" && password === "password") {
+      setShowLogin(false);
+      setUsername("");
+      setPassword("");
+      setLoginError(false);
+      navigate("/admin");
+    } else {
+      setLoginError(true);
+    }
+  };
+
   return (
     <footer className="bg-navy-900 text-gray-300 pt-16 pb-8 border-t-4 border-gold-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -128,22 +148,78 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="text-gold-500 shrink-0" size={20} />
-                <span>+256 (0) 123 456 789</span>
+                <span>+256 775 275 716</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="text-gold-500 shrink-0" size={20} />
-                <span>info@kingtrust.co.ug</span>
+                <span>info@kingtrustconsultancy.com</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-navy-800 text-center text-sm text-gray-500">
+        <div className="pt-8 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
           <p>
             © 2026 King Trust Real Consultancy Limited. Registered in Uganda.
           </p>
+          <button
+            onClick={() => setShowLogin(true)}
+            className="mt-4 md:mt-0 text-gray-500 hover:text-gold-500 transition-colors"
+          >
+            Admin Login
+          </button>
         </div>
       </div>
+
+      {/* Login Modal */}
+      {showLogin && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] px-4">
+          <div className="bg-white p-8 rounded-2xl w-full max-w-md shadow-2xl">
+            <h2 className="text-2xl font-serif font-bold text-navy-900 mb-6">Admin Login</h2>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                <input 
+                  type="text" 
+                  value={username} 
+                  onChange={(e) => setUsername(e.target.value)} 
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-navy-900 focus:border-transparent outline-none text-black"
+                  placeholder="Enter username"
+                  autoFocus
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <input 
+                  type="password" 
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)} 
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-navy-900 focus:border-transparent outline-none text-black"
+                  placeholder="Enter password"
+                />
+              </div>
+              {loginError && (
+                <p className="text-red-500 text-sm font-medium">Invalid username or password.</p>
+              )}
+              <div className="flex justify-end gap-3 mt-8">
+                <button 
+                  type="button" 
+                  onClick={() => setShowLogin(false)} 
+                  className="px-5 py-2.5 text-gray-600 hover:bg-gray-100 rounded-xl font-medium transition-colors"
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit" 
+                  className="px-6 py-2.5 bg-navy-900 text-white rounded-xl font-bold hover:bg-navy-800 transition-colors"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }

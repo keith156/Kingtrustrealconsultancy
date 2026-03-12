@@ -11,37 +11,44 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Counter } from "../components/Counter";
+import { Typewriter } from "../components/Typewriter";
 
 const services = [
   {
     icon: Car,
     title: "Vehicle Sales",
     desc: "Premium buying, selling, and management of vehicles.",
+    link: "/vehicles"
   },
   {
     icon: Building2,
     title: "Real Estate",
     desc: "Homes, commercial properties, and prime land.",
+    link: "/properties"
   },
   {
     icon: Home,
     title: "Apartments",
     desc: "Luxury short and long-stay apartment listings.",
+    link: "/properties"
   },
   {
     icon: Map,
     title: "Tours & Travel",
     desc: "Exclusive destination packages across Uganda.",
+    link: "/tours"
   },
   {
     icon: HardHat,
     title: "Construction",
     desc: "Expert residential and commercial construction.",
+    link: "/construction"
   },
   {
     icon: Briefcase,
     title: "Consultancy",
     desc: "Strategic business setup and advisory services.",
+    link: "/consultation"
   },
 ];
 
@@ -102,10 +109,16 @@ export function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight"
           >
-            Your Vision.{" "}
-            <span className="text-gold-500 italic">Our Expertise.</span>
-            <br />
-            Infinite Possibilities.
+            <span className="block">Your Vision.</span>
+            <span className="flex justify-center items-center my-2 md:my-4 w-full">
+              <span className="text-white italic pr-2 md:pr-4 text-right">
+                Our
+              </span>
+              <span className="text-left text-gold-500 italic w-[280px] md:w-[480px] whitespace-nowrap">
+                <Typewriter words={["Expertise.", "Promise.", "Dedication.", "Foundation.", "Excellence.", "Partnership.", "Legacy."]} />
+              </span>
+            </span>
+            <span className="block">Infinite Possibilities.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -165,7 +178,7 @@ export function HomePage() {
                 </h3>
                 <p className="text-gray-600 mb-6">{service.desc}</p>
                 <Link
-                  to="/services"
+                  to={service.link}
                   className="text-gold-600 font-semibold flex items-center gap-2 hover:text-navy-900 transition-colors"
                 >
                   Learn more <ArrowRight size={16} />

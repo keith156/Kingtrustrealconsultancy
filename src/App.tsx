@@ -8,6 +8,8 @@ import { ServicesPage } from "./pages/Services";
 import { PropertiesPage } from "./pages/Properties";
 import { VehiclesPage } from "./pages/Vehicles";
 import { ToursPage } from "./pages/Tours";
+import { ConstructionPage } from "./pages/Construction";
+import { ConsultationPage } from "./pages/Consultation";
 import { ContactPage } from "./pages/Contact";
 import { AdminPage } from "./pages/Admin";
 
@@ -25,6 +27,8 @@ export default function App() {
             <Route path="/properties" element={<PropertiesPage />} />
             <Route path="/vehicles" element={<VehiclesPage />} />
             <Route path="/tours" element={<ToursPage />} />
+            <Route path="/construction" element={<ConstructionPage />} />
+            <Route path="/consultation" element={<ConsultationPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/admin" element={<AdminPage />} />
           </Routes>

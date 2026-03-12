@@ -111,9 +111,14 @@ export function ToursPage() {
                     <span className="text-xl font-bold text-navy-900">
                       {dest.price}
                     </span>
-                    <button className="flex items-center gap-2 bg-gold-500 text-navy-900 px-6 py-2 rounded-full font-semibold hover:bg-gold-400 transition-colors">
+                    <a 
+                      href={`https://wa.me/256775275716?text=${encodeURIComponent(`Hi, I would like to book the tour: ${dest.package_name}.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 bg-gold-500 text-navy-900 px-6 py-2 rounded-full font-semibold hover:bg-gold-400 transition-colors"
+                    >
                       Book Now <ArrowRight size={16} />
-                    </button>
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -178,12 +183,14 @@ export function ToursPage() {
                   placeholder="Tell us about your ideal trip..."
                 ></textarea>
               </div>
-              <button
-                type="button"
-                className="w-full bg-gold-500 text-navy-900 py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-colors"
+              <a
+                href={`https://wa.me/256775275716?text=${encodeURIComponent(`Hi, I would like to plan a custom safari.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center bg-gold-500 text-navy-900 py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-colors"
               >
-                Send Inquiry
-              </button>
+                Send Inquiry via WhatsApp
+              </a>
             </form>
           </div>
         </div>

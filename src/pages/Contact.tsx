@@ -90,12 +90,14 @@ export function ContactPage() {
                 ></textarea>
               </div>
 
-              <button
-                type="button"
-                className="w-full bg-navy-900 text-white py-4 rounded-xl font-bold text-lg hover:bg-gold-500 hover:text-navy-900 transition-colors shadow-md"
+              <a
+                href={`https://wa.me/256775275716?text=${encodeURIComponent("Hi, I would like to get in touch with King Trust Consultancy.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center bg-navy-900 text-white py-4 rounded-xl font-bold text-lg hover:bg-gold-500 hover:text-navy-900 transition-colors shadow-md"
               >
-                Send Message
-              </button>
+                Send Message via WhatsApp
+              </a>
             </form>
           </motion.div>
 
@@ -135,9 +137,7 @@ export function ContactPage() {
                       Phone
                     </h3>
                     <p className="text-gray-600">
-                      +256 (0) 123 456 789
-                      <br />
-                      +256 (0) 987 654 321
+                      +256 775 275 716
                     </p>
                   </div>
                 </div>
@@ -151,9 +151,7 @@ export function ContactPage() {
                       Email
                     </h3>
                     <p className="text-gray-600">
-                      info@kingtrust.co.ug
-                      <br />
-                      support@kingtrust.co.ug
+                      info@kingtrustconsultancy.com
                     </p>
                   </div>
                 </div>
@@ -180,7 +178,7 @@ export function ContactPage() {
 
             {/* WhatsApp Button */}
             <a
-              href="https://wa.me/256123456789"
+              href={`https://wa.me/256775275716?text=${encodeURIComponent("Hi, I would like to get in touch with King Trust Consultancy.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 w-full bg-[#25D366] text-white py-4 rounded-xl font-bold text-lg hover:bg-[#128C7E] transition-colors shadow-lg"

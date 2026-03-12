@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { Building2, Car, Map, Plus, Save, CheckCircle2, Loader2, AlertCircle, Edit2, Trash2, X } from "lucide-react";
+import imageCompression from 'browser-image-compression';
 import { supabase } from "../lib/supabase";
 
 export function AdminPage() {
@@ -79,13 +80,22 @@ export function AdminPage() {
       let imageUrl = editingItem ? editingItem.image_url : '';
 
       if (imageFile && imageFile.size > 0) {
-        const fileExt = imageFile.name.split('.').pop();
+        // Compress the image before uploading
+        const options = {
+          maxSizeMB: 0.3, // Max 300 KB
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+        };
+        
+        const compressedFile = await imageCompression(imageFile, options);
+
+        const fileExt = compressedFile.name.split('.').pop() || 'jpg';
         const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
         const filePath = `${activeTab}/${fileName}`;
 
         const { error: uploadError } = await supabase.storage
           .from('images')
-          .upload(filePath, imageFile);
+          .upload(filePath, compressedFile);
 
         if (uploadError) throw new Error(`Image upload failed: ${uploadError.message}`);
 

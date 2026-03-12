@@ -123,9 +123,14 @@ export function PropertiesPage() {
                     </div>
                   </div>
 
-                  <button className="w-full flex items-center justify-center gap-2 bg-gray-50 text-navy-900 py-3 rounded-xl font-semibold hover:bg-gold-500 transition-colors">
-                    View Details <ArrowRight size={18} />
-                  </button>
+                  <a 
+                    href={`https://wa.me/256775275716?text=${encodeURIComponent(`Hi, I am interested in the property: ${property.title} listed for ${property.price}.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 bg-gray-50 text-navy-900 py-3 rounded-xl font-semibold hover:bg-gold-500 transition-colors"
+                  >
+                    Inquire Now <ArrowRight size={18} />
+                  </a>
                 </div>
               </motion.div>
             ))}
