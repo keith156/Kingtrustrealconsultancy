@@ -62,27 +62,27 @@ const stats = [
 const testimonials = [
   {
     name: "Kato Paul",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    image: "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&w=150&q=80",
     text: "King Trust made finding our dream home in Kampala an absolute breeze. Their professionalism is unmatched.",
   },
   {
     name: "Namatovu Sarah",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    image: "https://images.unsplash.com/photo-1531123414708-fbd431092e1b?auto=format&fit=crop&w=150&q=80",
     text: "The consultancy team provided invaluable insights that helped us set up our new branch seamlessly.",
   },
   {
     name: "Otim Emmanuel",
-    image: "https://randomuser.me/api/portraits/men/55.jpg",
+    image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=150&q=80",
     text: "I've purchased two vehicles and a commercial property through them. Always transparent and reliable.",
   },
   {
     name: "Nalubega Grace",
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=150&q=80",
     text: "Outstanding service! They helped me find a beautiful apartment in Kololo within days of arriving.",
   },
   {
     name: "Mukasa James",
-    image: "https://randomuser.me/api/portraits/men/74.jpg",
+    image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=150&q=80",
     text: "Their business consultancy services are top-notch. Highly recommend for anyone starting a business in Uganda.",
   },
 ];

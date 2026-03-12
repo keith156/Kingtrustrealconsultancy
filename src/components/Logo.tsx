@@ -1,4 +1,5 @@
 import React from 'react';
+import logoUrl from '../logo.png';
 
 export function Logo({ className = "h-12" }: { className?: string }) {
   return (
@@ -11,8 +12,9 @@ export function Logo({ className = "h-12" }: { className?: string }) {
         {/* Inner premium white circle */}
         <div className="w-full h-full bg-gradient-to-b from-white to-gray-50 rounded-full flex items-center justify-center p-1 overflow-hidden shadow-inner">
           <img 
-            src="/logo.png" 
+            src={logoUrl} 
             alt="King Trust Logo" 
+            referrerPolicy="no-referrer"
             className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500 drop-shadow-sm"
           />
         </div>
