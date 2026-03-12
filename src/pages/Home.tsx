@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   ArrowRight,
   Building2,
@@ -12,6 +13,14 @@ import {
 import { Link } from "react-router-dom";
 import { Counter } from "../components/Counter";
 import { Typewriter } from "../components/Typewriter";
+
+const heroImages = [
+  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80", // Real Estate
+  "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Vehicles
+  "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Tours & Travel
+  "https://images.unsplash.com/photo-1504307651254-35680f356f58?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Construction
+  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Consultancy
+];
 
 const services = [
   {
@@ -61,45 +70,67 @@ const stats = [
 
 const testimonials = [
   {
-    name: "Sarah K.",
-    role: "Homeowner",
+    name: "Kato Paul",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
     text: "King Trust made finding our dream home in Kampala an absolute breeze. Their professionalism is unmatched.",
   },
   {
-    name: "David M.",
-    role: "Business Owner",
+    name: "Namatovu Sarah",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
     text: "The consultancy team provided invaluable insights that helped us set up our new branch seamlessly.",
   },
   {
-    name: "Grace T.",
-    role: "Investor",
+    name: "Otim Emmanuel",
+    image: "https://randomuser.me/api/portraits/men/55.jpg",
     text: "I've purchased two vehicles and a commercial property through them. Always transparent and reliable.",
   },
   {
-    name: "James L.",
-    role: "Expat",
+    name: "Nalubega Grace",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
     text: "Outstanding service! They helped me find a beautiful apartment in Kololo within days of arriving.",
   },
   {
-    name: "Michael R.",
-    role: "Entrepreneur",
+    name: "Mukasa James",
+    image: "https://randomuser.me/api/portraits/men/74.jpg",
     text: "Their business consultancy services are top-notch. Highly recommend for anyone starting a business in Uganda.",
   },
 ];
 
 export function HomePage() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    // Preload images to prevent flickering
+    heroImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-navy-900">
         <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80"
-            alt="Luxury Real Estate"
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-navy-900/70 mix-blend-multiply"></div>
+          <AnimatePresence>
+            <motion.img
+              key={currentImageIndex}
+              src={heroImages[currentImageIndex]}
+              alt="Hero Background"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5 }}
+              className="absolute inset-0 w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-navy-900/70 mix-blend-multiply z-10"></div>
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
@@ -228,17 +259,19 @@ export function HomePage() {
             {[...testimonials, ...testimonials].map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 w-[350px] shrink-0 flex flex-col"
+                className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 w-[400px] min-h-[220px] shrink-0 flex flex-col"
               >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-navy-900 text-white flex items-center justify-center font-bold text-lg">
-                    {testimonial.name.charAt(0)}
-                  </div>
+                <div className="flex items-center gap-4 mb-6">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover border-2 border-gold-500"
+                    referrerPolicy="no-referrer"
+                  />
                   <div>
-                    <h4 className="font-bold text-navy-900 text-sm">
+                    <h4 className="font-bold text-navy-900 text-base">
                       {testimonial.name}
                     </h4>
-                    <p className="text-xs text-gray-500">{testimonial.role}</p>
                   </div>
                   <div className="ml-auto flex text-yellow-400">
                     <Star size={14} fill="currentColor" className="text-yellow-400" />
@@ -248,7 +281,7 @@ export function HomePage() {
                     <Star size={14} fill="currentColor" className="text-yellow-400" />
                   </div>
                 </div>
-                <p className="text-gray-600 text-sm italic flex-1">
+                <p className="text-gray-600 text-base italic flex-1 leading-relaxed">
                   "{testimonial.text}"
                 </p>
               </div>
