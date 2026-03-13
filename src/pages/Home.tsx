@@ -12,6 +12,8 @@ import {
 import { Link } from "react-router-dom";
 import { Counter } from "../components/Counter";
 import { Typewriter } from "../components/Typewriter";
+import keithImage from "../keith_josh.jpeg";
+import robbyImage from "../prince_robby.jpeg";
 
 const services = [
   {
@@ -66,9 +68,9 @@ const testimonials = [
     text: "King Trust made finding our dream home in Kampala an absolute breeze. Their professionalism is unmatched.",
   },
   {
-    name: "Namatovu Sarah",
-    image: "https://images.unsplash.com/photo-1531123414708-fbd431092e1b?auto=format&fit=crop&w=150&q=80",
-    text: "The consultancy team provided invaluable insights that helped us set up our new branch seamlessly.",
+    name: "Keith Josh",
+    image: keithImage,
+    text: "Great experience! The company planned our trip to Kasese perfectly—everything from transport to activities was well organized. The team was friendly and made the whole journey smooth and enjoyable. Highly recommend! ",
   },
   {
     name: "Otim Emmanuel",
@@ -76,9 +78,9 @@ const testimonials = [
     text: "I've purchased two vehicles and a commercial property through them. Always transparent and reliable.",
   },
   {
-    name: "Nalubega Grace",
-    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=150&q=80",
-    text: "Outstanding service! They helped me find a beautiful apartment in Kololo within days of arriving.",
+    name: "Prince Robby",
+    image: robbyImage,
+    text: "We used their business consulting services for our supply company and the results were excellent. They helped us improve our processes and gave very practical guidance. The team was professional, responsive, and easy to work with. Highly recommended!",
   },
   {
     name: "Mukasa James",

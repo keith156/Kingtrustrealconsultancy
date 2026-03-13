@@ -41,7 +41,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         isSolid
-          ? "bg-navy-900 shadow-lg py-4"
+          ? "bg-white shadow-lg py-4"
           : "bg-transparent py-6",
       )}
     >
@@ -61,7 +61,7 @@ export function Navbar() {
                   "text-sm font-medium tracking-wide transition-colors hover:text-gold-500",
                   location.pathname === link.path
                     ? "text-gold-500"
-                    : "text-gray-300",
+                    : isSolid ? "text-navy-900" : "text-gray-300",
                 )}
               >
                 {link.name.toUpperCase()}
@@ -73,7 +73,10 @@ export function Navbar() {
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white hover:text-gold-500 transition-colors"
+              className={cn(
+                "hover:text-gold-500 transition-colors",
+                isSolid ? "text-navy-900" : "text-white"
+              )}
             >
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -83,7 +86,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-navy-900 border-t border-navy-800 absolute top-full left-0 w-full">
+        <div className="lg:hidden bg-white border-t border-gray-100 absolute top-full left-0 w-full shadow-lg">
           <div className="px-4 pt-2 pb-6 space-y-1">
             {navLinks.map((link) => (
               <Link
@@ -92,8 +95,8 @@ export function Navbar() {
                 className={cn(
                   "block px-3 py-3 text-base font-medium transition-colors",
                   location.pathname === link.path
-                    ? "text-gold-500 bg-navy-800"
-                    : "text-gray-300 hover:text-gold-500 hover:bg-navy-800",
+                    ? "text-gold-500 bg-gray-50"
+                    : "text-navy-900 hover:text-gold-500 hover:bg-gray-50",
                 )}
               >
                 {link.name.toUpperCase()}
