@@ -12,8 +12,6 @@ import {
 import { Link } from "react-router-dom";
 import { Counter } from "../components/Counter";
 import { Typewriter } from "../components/Typewriter";
-import keithImage from "../keith_josh.jpeg";
-import robbyImage from "../prince_robby.jpeg";
 
 const services = [
   {
@@ -69,7 +67,7 @@ const testimonials = [
   },
   {
     name: "Keith Josh",
-    image: keithImage,
+    image: "/keith_josh.jpeg",
     text: "Great experience! The company planned our trip to Kasese perfectly—everything from transport to activities was well organized. The team was friendly and made the whole journey smooth and enjoyable. Highly recommend! ",
   },
   {
@@ -79,7 +77,7 @@ const testimonials = [
   },
   {
     name: "Prince Robby",
-    image: robbyImage,
+    image: "/prince_robby.jpeg",
     text: "We used their business consulting services for our supply company and the results were excellent. They helped us improve our processes and gave very practical guidance. The team was professional, responsive, and easy to work with. Highly recommended!",
   },
   {
@@ -237,7 +235,7 @@ export function HomePage() {
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-12 h-12 rounded-full object-cover border-2 border-gold-500"
-                    referrerPolicy="no-referrer"
+                    {...(testimonial.image.startsWith('http') ? { referrerPolicy: "no-referrer" } : {})}
                   />
                   <div>
                     <h4 className="font-bold text-navy-900 text-base">
