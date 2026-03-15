@@ -39,16 +39,28 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300",
+        "fixed top-0 w-full z-50 transition-all duration-300 overflow-visible",
         isSolid
-          ? "bg-white shadow-lg py-4"
-          : "bg-transparent py-6",
+          ? "bg-navy-900 shadow-lg h-[88px]"
+          : "bg-transparent h-[106px]",
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-3 group">
-            <Logo className="h-20 w-auto -my-2 relative z-10" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex justify-between items-center h-full">
+          <Link to="/" className="flex items-center gap-4 group py-1">
+            <div className="relative flex items-center justify-center w-28 h-28">
+              {/* Elegant Glass Halo */}
+              <div className="absolute inset-0 bg-white/10 rounded-full blur-2xl group-hover:bg-gold-500/20 transition-colors duration-500" />
+              <Logo className="w-full h-full relative z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-white font-serif font-bold text-lg tracking-wider drop-shadow-md leading-none">
+                KING TRUST
+              </span>
+              <span className="text-gold-500 font-sans text-[9px] tracking-[0.25em] font-medium mt-1.5 leading-none uppercase">
+                REAL CONSULTANCY
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Menu */}
@@ -61,7 +73,7 @@ export function Navbar() {
                   "text-sm font-medium tracking-wide transition-colors hover:text-gold-500",
                   location.pathname === link.path
                     ? "text-gold-500"
-                    : isSolid ? "text-navy-900" : "text-gray-300",
+                    : "text-gray-300",
                 )}
               >
                 {link.name.toUpperCase()}
@@ -69,14 +81,10 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={cn(
-                "hover:text-gold-500 transition-colors",
-                isSolid ? "text-navy-900" : "text-white"
-              )}
+              className="text-white hover:text-gold-500 transition-colors"
             >
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -86,7 +94,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 absolute top-full left-0 w-full shadow-lg">
+        <div className="lg:hidden bg-navy-900 border-t border-navy-800 absolute top-full left-0 w-full shadow-lg">
           <div className="px-4 pt-2 pb-6 space-y-1">
             {navLinks.map((link) => (
               <Link
@@ -95,8 +103,8 @@ export function Navbar() {
                 className={cn(
                   "block px-3 py-3 text-base font-medium transition-colors",
                   location.pathname === link.path
-                    ? "text-gold-500 bg-gray-50"
-                    : "text-navy-900 hover:text-gold-500 hover:bg-gray-50",
+                    ? "text-gold-500 bg-navy-800"
+                    : "text-gray-300 hover:text-gold-500 hover:bg-navy-800",
                 )}
               >
                 {link.name.toUpperCase()}
