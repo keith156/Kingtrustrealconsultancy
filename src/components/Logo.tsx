@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/logo.jpeg';
+import logo from '../assets/logo.png';
 
 export function Logo({ className = "h-12" }: { className?: string }) {
   return (
