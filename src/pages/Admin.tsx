@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
-import { Building2, Car, Map, Plus, Save, CheckCircle2, Loader2, AlertCircle, Edit2, Trash2, X } from "lucide-react";
+import { Building2, Car, Map, Plus, Save, CheckCircle2, Loader2, AlertCircle, Edit2, Trash2, X, Star } from "lucide-react";
 import imageCompression from 'browser-image-compression';
 import { supabase } from "../lib/supabase";
 
@@ -52,6 +52,19 @@ export function AdminPage() {
       fetchItems();
     } catch (error: any) {
       setErrorMessage(error.message || "Failed to delete item.");
+    }
+  };
+
+  const handleToggleFeatured = async (item: any) => {
+    try {
+      const { error } = await supabase
+        .from(activeTab)
+        .update({ featured: !item.featured })
+        .eq('id', item.id);
+      if (error) throw error;
+      fetchItems();
+    } catch (error: any) {
+      setErrorMessage(error.message || 'Failed to update featured status.');
     }
   };
 
@@ -433,18 +446,36 @@ export function AdminPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {items.map((item) => (
-                <div key={item.id} className="border border-gray-100 rounded-xl p-4 flex gap-4 hover:shadow-md transition-shadow">
+                <div key={item.id} className={`border rounded-xl p-4 flex gap-4 hover:shadow-md transition-shadow ${item.featured ? 'border-gold-300 bg-gold-50/30' : 'border-gray-100'}`}>
                   <div className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
                     <img src={item.image_url} alt="Thumbnail" className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-navy-900 truncate">
-                      {item.title || item.make_model || item.package_name}
-                    </h3>
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-bold text-navy-900 truncate">
+                        {item.title || item.make_model || item.package_name}
+                      </h3>
+                      <button
+                        onClick={() => handleToggleFeatured(item)}
+                        title={item.featured ? 'Remove from featured' : 'Mark as featured'}
+                        className={`flex-shrink-0 p-1.5 rounded-lg transition-colors ${
+                          item.featured
+                            ? 'text-gold-500 bg-gold-100 hover:bg-gold-200'
+                            : 'text-gray-400 bg-gray-50 hover:bg-gray-100 hover:text-gold-500'
+                        }`}
+                      >
+                        <Star size={16} fill={item.featured ? 'currentColor' : 'none'} />
+                      </button>
+                    </div>
                     <p className="text-gold-600 font-medium text-sm mt-1">{item.price}</p>
                     <p className="text-gray-500 text-sm truncate mt-1">
                       {item.location || `${item.year} • ${item.mileage}`}
                     </p>
+                    {item.featured && (
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-gold-600 bg-gold-100 px-2 py-0.5 rounded-full mt-2">
+                        <Star size={10} fill="currentColor" /> Featured
+                      </span>
+                    )}
                     <div className="flex gap-2 mt-3">
                       <button 
                         onClick={() => handleEdit(item)}
