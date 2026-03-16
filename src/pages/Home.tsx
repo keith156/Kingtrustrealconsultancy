@@ -12,6 +12,8 @@ import {
 import { Link } from "react-router-dom";
 import { Counter } from "../components/Counter";
 import { Typewriter } from "../components/Typewriter";
+import keithJoshImg from "../assets/keith_josh.jpeg";
+import princeRobbyImg from "../assets/prince_robby.jpeg";
 
 const services = [
   {
@@ -67,7 +69,7 @@ const testimonials = [
   },
   {
     name: "Keith Josh",
-    image: "/keith_josh.jpeg",
+    image: keithJoshImg,
     text: "Great experience! The company planned our trip to Kasese perfectly—everything from transport to activities was well organized. The team was friendly and made the whole journey smooth and enjoyable. Highly recommend! ",
   },
   {
@@ -77,7 +79,7 @@ const testimonials = [
   },
   {
     name: "Prince Robby",
-    image: "/prince_robby.jpeg",
+    image: princeRobbyImg,
     text: "We used their business consulting services for our supply company and the results were excellent. They helped us improve our processes and gave very practical guidance. The team was professional, responsive, and easy to work with. Highly recommended!",
   },
   {
