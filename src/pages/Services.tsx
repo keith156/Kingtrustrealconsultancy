@@ -7,8 +7,15 @@ import {
   HardHat,
   Briefcase,
   ArrowRight,
+  Settings,
+  Leaf,
+  Stethoscope,
+  FileText,
+  ShieldCheck,
+  Globe,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ExpressServices } from "../components/ExpressServices";
 
 const services = [
   {
@@ -63,6 +70,24 @@ const services = [
     desc: "Strategic advisory for your business success. We provide feasibility studies, business setup assistance, and expert guidance to navigate the Ugandan market.",
     image:
       "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    link: "/contact",
+  },
+  {
+    id: "suppliers",
+    icon: Settings,
+    title: "General Suppliers",
+    desc: "Your reliable partner for high-quality office materials, computers, printers, and other essential business equipment. We ensure timely delivery and competitive pricing for all your supply needs.",
+    image:
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    link: "/general-suppliers",
+  },
+  {
+    id: "agriculture",
+    icon: Leaf,
+    title: "Agricultural Business Management",
+    desc: "Professional guidance for agricultural ventures. We offer strategic planning, resource management, and market expansion advice to help your farming business thrive in the modern landscape.",
+    image:
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     link: "/contact",
   },
 ];
@@ -130,6 +155,8 @@ export function ServicesPage() {
           </motion.div>
         ))}
       </div>
+
+      <ExpressServices />
     </div>
   );
 }

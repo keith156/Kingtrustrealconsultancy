@@ -121,9 +121,11 @@ export function ContactPage() {
                       Our Office
                     </h3>
                     <p className="text-gray-600">
-                      P.O Box 203910
+                      Kikaya Bahai road,
                       <br />
-                      Kampala GPO, Uganda
+                      opposite Total Bahai
+                      <br />
+                      Kampala, Uganda
                     </p>
                   </div>
                 </div>
@@ -138,6 +140,8 @@ export function ContactPage() {
                     </h3>
                     <p className="text-gray-600">
                       +256 775 275 716
+                      <br />
+                      +256 709 668 654
                     </p>
                   </div>
                 </div>

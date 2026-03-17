@@ -74,6 +74,70 @@ export function ConstructionPage() {
           ))}
         </div>
 
+        {/* Project Gallery */}
+        <div className="mb-24">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-serif font-bold text-navy-900 mb-4">
+              Our <span className="text-gold-500">Recent Projects</span>
+            </h2>
+            <div className="w-16 h-1 bg-gold-500 mx-auto"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "Modern Office Complex",
+                location: "Kampala"
+              },
+              {
+                url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "Residential Apartments",
+                location: "Entebbe"
+              },
+              {
+                url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "Industrial Warehouse",
+                location: "Namanve"
+              },
+              {
+                url: "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "Luxury Villa",
+                location: "Kira"
+              },
+              {
+                url: "https://images.unsplash.com/photo-1590644365607-1c5a519a7a37?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "Commercial Plaza",
+                location: "Mbarara"
+              },
+              {
+                url: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "Urban Housing",
+                location: "Jinji"
+              }
+            ].map((project, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="group relative h-80 rounded-2xl overflow-hidden shadow-lg"
+              >
+                <img
+                  src={project.url}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent opacity-80"></div>
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h3 className="text-xl font-bold">{project.title}</h3>
+                  <p className="text-gold-500 text-sm">{project.location}, Uganda</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
         {/* CTA */}
         <div className="bg-navy-900 rounded-3xl p-8 md:p-16 text-white text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-gold-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-x-1/2 -translate-y-1/2"></div>

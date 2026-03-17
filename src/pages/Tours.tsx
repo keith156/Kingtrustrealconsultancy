@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { MapPin, Clock, Users, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
+import { MapPin, Clock, Users, CheckCircle2, ArrowRight, Loader2, Car, Building, Ticket, FileText } from "lucide-react";
 import { supabase } from "../lib/supabase";
+import { ExpressServices } from "../components/ExpressServices";
 
 export function ToursPage() {
   const [destinations, setDestinations] = useState<any[]>([]);
@@ -53,6 +54,8 @@ export function ToursPage() {
           </motion.p>
         </div>
       </div>
+
+      <ExpressServices />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -125,6 +128,52 @@ export function ToursPage() {
             ))}
           </div>
         )}
+
+        {/* Travel Essentials Section Redesign */}
+        <div className="mb-24 relative overflow-hidden bg-navy-900 rounded-[3rem] p-10 md:p-20 text-white">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <motion.h2 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="text-4xl md:text-5xl font-serif font-bold mb-8"
+              >
+                Journey <span className="text-gold-500">Excellence</span>
+              </motion.h2>
+              <p className="text-gray-300 text-lg mb-10 leading-relaxed">
+                Beyond the destination, we ensure every detail of your journey is handled with precision. From premium fleet rentals to seamless ticketing, we are your travel logistics partner.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  { title: "Safari Car Hire", desc: "Premium 4x4 Land Cruisers & Buses.", icon: Car },
+                  { title: "Hotel Reservations", desc: "Top-tier accommodation booking.", icon: Building },
+                  { title: "Air Ticketing", desc: "Domestic & global flight routes.", icon: Ticket },
+                  { title: "Visa Assistance", desc: "Expert guidance on all travel docs.", icon: FileText }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4 group">
+                    <div className="w-12 h-12 bg-navy-800 rounded-xl flex items-center justify-center text-gold-500 group-hover:bg-gold-500 group-hover:text-navy-900 transition-all">
+                      <item.icon size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white group-hover:text-gold-500 transition-colors uppercase tracking-wider text-sm">{item.title}</h3>
+                      <p className="text-xs text-gray-400">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Travel Logistics" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-navy-900/20"></div>
+            </div>
+          </div>
+        </div>
 
         {/* Inquiry Form */}
         <div className="bg-navy-900 rounded-3xl p-8 md:p-16 text-white relative overflow-hidden">

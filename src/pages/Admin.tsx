@@ -4,6 +4,12 @@ import { Building2, Car, Map, Plus, Save, CheckCircle2, Loader2, AlertCircle, Ed
 import imageCompression from 'browser-image-compression';
 import { supabase } from "../lib/supabase";
 
+const LIMITS = {
+  properties: 20,
+  vehicles: 8,
+  tours: 20
+};
+
 export function AdminPage() {
   const [activeTab, setActiveTab] = useState<"properties" | "vehicles" | "tours">("properties");
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -86,6 +92,13 @@ export function AdminPage() {
 
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
+
+    // Check limits for new items
+    if (!editingItem && items.length >= LIMITS[activeTab]) {
+      setErrorMessage(`Limit reached! You can only have up to ${LIMITS[activeTab]} ${activeTab}. Please delete an existing item before adding a new one.`);
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       // 1. Upload Image (Optional if editing)
@@ -259,6 +272,11 @@ export function AdminPage() {
             <h2 className="text-2xl font-serif font-bold text-navy-900 flex items-center gap-2">
               {editingItem ? <Edit2 className="text-gold-500" /> : <Plus className="text-gold-500" />}
               {editingItem ? 'Edit' : 'New'} {activeTab === "properties" ? "Property" : activeTab === "vehicles" ? "Vehicle" : "Tour"}
+              {!editingItem && (
+                <span className="text-sm font-normal text-gray-400 ml-2">
+                  ({items.length} / {LIMITS[activeTab]} used)
+                </span>
+              )}
             </h2>
             {editingItem && (
               <button onClick={cancelEdit} className="text-gray-500 hover:text-gray-700 flex items-center gap-1 text-sm font-medium">

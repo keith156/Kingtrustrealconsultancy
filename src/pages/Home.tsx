@@ -17,6 +17,7 @@ import {
   Bed,
   Bath,
   Loader2,
+  Leaf,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Counter } from "../components/Counter";
@@ -61,6 +62,18 @@ const services = [
     title: "Consultancy",
     desc: "Strategic business setup and advisory services.",
     link: "/consultation"
+  },
+  {
+    icon: Settings,
+    title: "General Suppliers",
+    desc: "Reliable supply of office materials, computers, and printers.",
+    link: "/general-suppliers"
+  },
+  {
+    icon: Leaf,
+    title: "Agri-Business",
+    desc: "Professional agricultural business management and advisory.",
+    link: "/services"
   },
 ];
 
