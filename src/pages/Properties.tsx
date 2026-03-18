@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { MapPin, Bed, Bath, Square, ArrowRight, Loader2 } from "lucide-react";
+import { MapPin, ArrowRight, Loader2, Info } from "lucide-react";
 import { supabase } from "../lib/supabase";
 
 const filters = ["All", "For Sale", "For Rent", "Apartments"];
@@ -85,11 +85,8 @@ export function PropertiesPage() {
                 className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 gold-glow-hover group"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <div className="absolute top-4 left-4 z-10 bg-navy-900 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  <div className="absolute top-4 left-4 z-10 bg-navy-900/40 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase">
                     {property.status}
-                  </div>
-                  <div className="absolute top-4 right-4 z-10 bg-gold-500 text-navy-900 px-3 py-1 rounded-full text-sm font-bold">
-                    {property.price}
                   </div>
                   <img
                     src={property.image_url}
@@ -99,38 +96,45 @@ export function PropertiesPage() {
                   />
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-2xl font-serif font-bold text-navy-900 mb-2">
-                    {property.title}
-                  </h3>
-                  <div className="flex items-center text-gray-500 mb-4">
-                    <MapPin size={16} className="mr-1 text-gold-500" />
-                    <span className="text-sm">{property.location}</span>
+                <div className="p-8 flex flex-col flex-1">
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-serif font-bold text-navy-900 mb-2 group-hover:text-gold-600 transition-colors">
+                      {property.title}
+                    </h3>
+                    <div className="flex items-center text-gray-400 mb-4">
+                      <MapPin size={16} className="mr-1.5 text-gold-500" />
+                      <span className="text-sm font-medium tracking-wide">{property.location}</span>
+                    </div>
+                    
+                    {property.description && (
+                      <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 mb-4">
+                        <div className="flex items-start gap-2">
+                          <Info size={16} className="text-gold-500 mt-0.5 flex-shrink-0" />
+                          <p className="text-sm text-gray-600 leading-relaxed italic line-clamp-2">
+                            {property.description}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-b border-gray-100 py-4 mb-6">
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Bed size={18} className="text-navy-900" />
-                      <span className="font-medium">{property.beds || 0}</span>
+                  <div className="mt-auto pt-6 border-t border-gray-50">
+                    <div className="flex flex-col mb-6">
+                      <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Price</span>
+                      <span className="text-3xl font-bold text-navy-900 group-hover:text-gold-600 transition-colors">
+                        {property.price.includes('M') ? `${property.price} UGX` : property.price}
+                      </span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Bath size={18} className="text-navy-900" />
-                      <span className="font-medium">{property.baths || 0}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Square size={18} className="text-navy-900" />
-                      <span className="font-medium">{property.sq_ft || 0} sqft</span>
-                    </div>
-                  </div>
 
-                  <a 
-                    href={`https://wa.me/256775275716?text=${encodeURIComponent(`Hi, I am interested in the property: ${property.title} listed for ${property.price}.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 bg-gray-50 text-navy-900 py-3 rounded-xl font-semibold hover:bg-gold-500 transition-colors"
-                  >
-                    Inquire Now <ArrowRight size={18} />
-                  </a>
+                    <a 
+                      href={`https://wa.me/256775275716?text=${encodeURIComponent(`Hi, I am interested in the property: ${property.title} listed for ${property.price}.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-3 bg-navy-900 text-white py-4 rounded-2xl font-bold hover:bg-gold-500 hover:text-navy-900 transition-all duration-300 shadow-lg shadow-navy-900/10 hover:shadow-gold-500/20 active:scale-95"
+                    >
+                      Inquire Now <ArrowRight size={20} />
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             ))}
