@@ -31,6 +31,7 @@ export function Navbar() {
     { name: "Construction", path: "/construction" },
     { name: "Consultation", path: "/consultation" },
     { name: "Agri-Business", path: "/agriculture" },
+    { name: "Import & Export", path: "/import-export" },
     { name: "Contact", path: "/contact" },
   ];
 

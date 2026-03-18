@@ -14,6 +14,7 @@ import { ContactPage } from "./pages/Contact";
 import { AdminPage } from "./pages/Admin";
 import { GeneralSuppliersPage } from "./pages/GeneralSuppliers";
 import { AgriculturePage } from "./pages/Agriculture";
+import { ImportExportPage } from "./pages/ImportExport";
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/general-suppliers" element={<GeneralSuppliersPage />} />
             <Route path="/agriculture" element={<AgriculturePage />} />
+            <Route path="/import-export" element={<ImportExportPage />} />
           </Routes>
         </main>
         <Footer />

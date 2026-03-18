@@ -90,6 +90,15 @@ const services = [
       "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     link: "/contact",
   },
+  {
+    id: "import-export",
+    icon: Globe,
+    title: "Import & Export",
+    desc: "Your global partner for sourcing and logistics. We specialize in the import and export of high-quality vehicles, heavy machinery, and general merchandise from Japan, UK, and Dubai directly to Uganda.",
+    image:
+      "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    link: "/import-export",
+  },
 ];
 
 export function ServicesPage() {

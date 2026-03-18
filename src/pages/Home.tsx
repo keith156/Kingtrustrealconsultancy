@@ -18,6 +18,7 @@ import {
   Bath,
   Loader2,
   Leaf,
+  Globe,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Counter } from "../components/Counter";
@@ -74,6 +75,12 @@ const services = [
     title: "Agri-Business",
     desc: "Professional agricultural business management and advisory.",
     link: "/agriculture"
+  },
+  {
+    icon: Globe,
+    title: "Import & Export",
+    desc: "Global sourcing and logistics for vehicles and machinery.",
+    link: "/import-export"
   },
 ];
 
