@@ -73,7 +73,7 @@ const services = [
     icon: Leaf,
     title: "Agri-Business",
     desc: "Professional agricultural business management and advisory.",
-    link: "/services"
+    link: "/agriculture"
   },
 ];
 

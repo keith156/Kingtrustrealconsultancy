@@ -30,6 +30,7 @@ export function Navbar() {
     { name: "Tours", path: "/tours" },
     { name: "Construction", path: "/construction" },
     { name: "Consultation", path: "/consultation" },
+    { name: "Agri-Business", path: "/agriculture" },
     { name: "Contact", path: "/contact" },
   ];
 

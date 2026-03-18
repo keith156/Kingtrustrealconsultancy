@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Settings, Calendar, Gauge, ArrowRight, Loader2 } from "lucide-react";
+import { Settings, ArrowRight, Loader2 } from "lucide-react";
 import { supabase } from "../lib/supabase";
 
 const filters = ["All", "New", "Used", "SUV", "Sedan", "Trucks"];
@@ -44,7 +44,7 @@ export function VehiclesPage() {
             Premium <span className="text-gold-500">Vehicles</span>
           </motion.h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto font-light">
-            Discover our curated selection of luxury and utility vehicles.
+            Discover our curated selection of luxury and utility vehicles. We also facilitate the high-quality import and export of vehicles to and from Uganda.
           </p>
         </div>
       </div>
@@ -77,63 +77,63 @@ export function VehiclesPage() {
             No vehicles found matching your criteria.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {filteredVehicles.map((vehicle, index) => (
               <motion.div
                 key={vehicle.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 gold-glow-hover group flex flex-col"
+                className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col group"
               >
-                <div className="relative h-56 overflow-hidden">
-                  <div className="absolute top-4 left-4 z-10 bg-navy-900 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                {/* Image Section */}
+                <div className="relative h-64 overflow-hidden">
+                  <div className="absolute top-4 left-4 z-10 bg-navy-900/40 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase">
                     {vehicle.condition}
-                  </div>
-                  <div className="absolute top-4 right-4 z-10 bg-gold-500 text-navy-900 px-3 py-1 rounded-full text-sm font-bold">
-                    {vehicle.price}
                   </div>
                   <img
                     src={vehicle.image_url}
                     alt={vehicle.make_model}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     referrerPolicy="no-referrer"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-2xl font-serif font-bold text-navy-900 mb-1">
-                    {vehicle.make_model}
-                  </h3>
-                  <h4 className="text-lg text-gray-600 mb-6">{vehicle.body_type}</h4>
-
-                  <div className="grid grid-cols-2 gap-4 mb-6 mt-auto">
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Calendar size={18} className="text-gold-500" />
-                      <span className="font-medium text-sm">{vehicle.year}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Gauge size={18} className="text-gold-500" />
-                      <span className="font-medium text-sm">
-                        {vehicle.mileage}
+                {/* Content Section */}
+                <div className="p-8 flex flex-col flex-1">
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-serif font-bold text-navy-900 mb-3 group-hover:text-gold-600 transition-colors">
+                      {vehicle.make_model}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 bg-gray-50 text-gray-500 rounded-full text-xs font-semibold tracking-wide border border-gray-100">
+                        {vehicle.body_type}
                       </span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600 col-span-2">
-                      <Settings size={18} className="text-gold-500" />
-                      <span className="font-medium text-sm">
+                      <div className="flex items-center gap-1.5 px-3 py-1 bg-gray-50 text-gray-500 rounded-full text-xs font-semibold tracking-wide border border-gray-100">
+                        <Settings size={12} className="text-gold-500" />
                         {vehicle.transmission}
-                      </span>
+                      </div>
                     </div>
                   </div>
 
-                  <a 
-                    href={`https://wa.me/256775275716?text=${encodeURIComponent(`Hi, I am interested in the vehicle: ${vehicle.make_model} listed for ${vehicle.price}.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 bg-gray-50 text-navy-900 py-3 rounded-xl font-semibold hover:bg-gold-500 transition-colors mt-auto"
-                  >
-                    Inquire Now <ArrowRight size={18} />
-                  </a>
+                  <div className="mt-auto pt-6 border-t border-gray-50">
+                    <div className="flex flex-col mb-6">
+                      <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Price</span>
+                      <span className="text-3xl font-bold text-navy-900 group-hover:text-gold-600 transition-colors">
+                        {vehicle.price.includes('M') ? `${vehicle.price} UGX` : vehicle.price}
+                      </span>
+                    </div>
+
+                    <a 
+                      href={`https://wa.me/256775275716?text=${encodeURIComponent(`Hi, I am interested in the vehicle: ${vehicle.make_model} listed for ${vehicle.price}.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-3 bg-navy-900 text-white py-4 rounded-2xl font-bold hover:bg-gold-500 hover:text-navy-900 transition-all duration-300 shadow-lg shadow-navy-900/10 hover:shadow-gold-500/20 active:scale-95"
+                    >
+                      Inquire Now <ArrowRight size={20} />
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             ))}

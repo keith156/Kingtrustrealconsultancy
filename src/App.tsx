@@ -13,6 +13,7 @@ import { ConsultationPage } from "./pages/Consultation";
 import { ContactPage } from "./pages/Contact";
 import { AdminPage } from "./pages/Admin";
 import { GeneralSuppliersPage } from "./pages/GeneralSuppliers";
+import { AgriculturePage } from "./pages/Agriculture";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/general-suppliers" element={<GeneralSuppliersPage />} />
+            <Route path="/agriculture" element={<AgriculturePage />} />
           </Routes>
         </main>
         <Footer />
