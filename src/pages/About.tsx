@@ -1,5 +1,7 @@
 import { motion } from "motion/react";
 import { Target, Eye, Shield, CheckCircle2 } from "lucide-react";
+import bensonImg from "../assets/ceo_benson.png";
+import stevenImg from "../assets/ceo_steven_koch.png";
 
 export function AboutPage() {
   return (
@@ -176,10 +178,9 @@ export function AboutPage() {
           <motion.div whileHover={{ y: -10 }} className="text-center group">
             <div className="w-48 h-48 mx-auto rounded-full overflow-hidden mb-6 border-4 border-gold-500/20 group-hover:border-gold-500 transition-colors">
               <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src={bensonImg}
                 alt="Namanya Benson"
                 className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
               />
             </div>
             <h3 className="text-2xl font-serif font-bold text-navy-900">
@@ -192,14 +193,13 @@ export function AboutPage() {
           <motion.div whileHover={{ y: -10 }} className="text-center group">
             <div className="w-48 h-48 mx-auto rounded-full overflow-hidden mb-6 border-4 border-gold-500/20 group-hover:border-gold-500 transition-colors">
               <img
-                src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Ainebyona Abdulah"
+                src={stevenImg}
+                alt="Steven Koch"
                 className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
               />
             </div>
             <h3 className="text-2xl font-serif font-bold text-navy-900">
-              Ainebyona Abdulah
+              Steven Koch
             </h3>
             <p className="text-gold-600 font-medium uppercase tracking-wider text-sm mt-2">
               Director
