@@ -270,16 +270,109 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Deals of the Week Section */}
-      {(dealsLoading || hasDeals) && (
+      {/* Featured Properties Section - Dedicated Luxury Display */}
+      {featuredProperties.length > 0 && (
+        <section className="py-24 bg-gray-50 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2 bg-gold-100 text-gold-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4 uppercase tracking-widest">
+                  <Home size={14} fill="currentColor" /> Exclusive Real Estate
+                </div>
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-navy-900 mb-6">
+                  Featured <span className="text-gold-500">Properties</span>
+                </h2>
+                <p className="text-lg text-gray-600 font-light">
+                  Discover our hand-picked selection of premium homes, commercial spaces, and prime land across Uganda.
+                </p>
+              </div>
+              <Link
+                to="/properties"
+                className="mt-6 md:mt-0 inline-flex items-center gap-2 text-navy-900 font-bold border-b-2 border-gold-500 pb-1 hover:text-gold-600 hover:border-navy-900 transition-all uppercase tracking-wider text-sm"
+              >
+                View all listings <ArrowRight size={18} />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {featuredProperties.map((property, index) => (
+                <motion.div
+                  key={property.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group relative bg-white rounded-3xl overflow-hidden shadow-2xl shadow-navy-900/5 hover:shadow-gold-500/10 transition-all duration-500"
+                >
+                  <div className="relative h-[400px] overflow-hidden">
+                    <img
+                      src={property.image_url}
+                      alt={property.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                    
+                    <div className="absolute top-6 left-6 flex flex-col gap-2">
+                      <span className="bg-gold-500/90 text-navy-900 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest backdrop-blur-md">
+                        {property.status}
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <div className="flex items-center gap-2 text-gold-500 mb-2">
+                        <MapPin size={16} />
+                        <span className="text-sm font-medium tracking-wide text-white/90">{property.location}</span>
+                      </div>
+                      <h3 className="text-2xl font-serif font-bold text-white mb-4 group-hover:text-gold-500 transition-colors">
+                        {property.title}
+                      </h3>
+                      <div className="flex items-center justify-between items-end">
+                        <div className="text-3xl font-bold text-gold-500">
+                          {property.price}
+                        </div>
+                        <div className="flex gap-4 text-white/80 text-sm">
+                          <div className="flex items-center gap-1.5">
+                            <Bed size={18} className="text-gold-500" />
+                            <span>{property.beds || 0}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <Bath size={18} className="text-gold-500" />
+                            <span>{property.baths || 0}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Hover Link Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <a
+                        href={`https://wa.me/256775275716?text=${encodeURIComponent(`Hi, I am interested in the featured property: ${property.title} listed for ${property.price}.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white text-navy-900 px-8 py-3 rounded-full font-bold hover:bg-gold-500 transition-colors shadow-2xl flex items-center gap-2"
+                      >
+                        Inquire Now <ArrowRight size={18} />
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Deals of the Week Section - Simplified Vehicles & Tours */}
+      {(dealsLoading || (featuredVehicles.length > 0 || featuredTours.length > 0)) && (
         <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 bg-gold-100 text-gold-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
-                <Star size={14} fill="currentColor" /> Deals of the Week
+                <Star size={14} fill="currentColor" /> Premium Deals
               </div>
               <h2 className="text-4xl font-serif font-bold text-navy-900 mb-4">
-                Featured Listings
+                Seasonal Highlights
               </h2>
               <div className="w-24 h-1 bg-gold-500 mx-auto"></div>
             </div>
@@ -290,10 +383,10 @@ export function HomePage() {
               </div>
             ) : (
               <div className="space-y-20">
-
                 {/* Featured Vehicles */}
                 {featuredVehicles.length > 0 && (
                   <div>
+                    {/* ... (keep existing vehicle code) ... */}
                     <div className="flex items-center justify-between mb-8">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-navy-900 rounded-xl flex items-center justify-center text-gold-500">
@@ -367,86 +460,6 @@ export function HomePage() {
                         className="inline-flex items-center gap-2 bg-navy-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-gold-500 hover:text-navy-900 transition-all"
                       >
                         View All Vehicles <ArrowRight size={18} />
-                      </Link>
-                    </div>
-                  </div>
-                )}
-
-                {/* Featured Properties */}
-                {featuredProperties.length > 0 && (
-                  <div>
-                    <div className="flex items-center justify-between mb-8">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-navy-900 rounded-xl flex items-center justify-center text-gold-500">
-                          <Building2 size={20} />
-                        </div>
-                        <h3 className="text-2xl font-serif font-bold text-navy-900">Dream Properties</h3>
-                      </div>
-                      <Link to="/properties" className="flex items-center gap-1 text-gold-600 font-semibold hover:text-navy-900 transition-colors text-sm">
-                        View All <ArrowRight size={16} />
-                      </Link>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {featuredProperties.map((property, index) => (
-                        <motion.div
-                          key={property.id}
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.1 }}
-                          className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 gold-glow-hover group"
-                        >
-                          <div className="relative h-56 overflow-hidden">
-                            <div className="absolute top-4 left-4 z-10 bg-navy-900 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                              {property.status}
-                            </div>
-                            <div className="absolute top-4 right-4 z-10 bg-gold-500 text-navy-900 px-3 py-1 rounded-full text-sm font-bold">
-                              {property.price}
-                            </div>
-                            <div className="absolute bottom-4 right-4 z-10 bg-white/90 p-1 rounded-full">
-                              <Star size={14} fill="#D4A017" className="text-gold-500" />
-                            </div>
-                            <img
-                              src={property.image_url}
-                              alt={property.title}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                              referrerPolicy="no-referrer"
-                            />
-                          </div>
-                          <div className="p-6">
-                            <h4 className="text-xl font-serif font-bold text-navy-900 mb-2">{property.title}</h4>
-                            <div className="flex items-center text-gray-500 mb-4">
-                              <MapPin size={14} className="mr-1 text-gold-500" />
-                              <span className="text-sm">{property.location}</span>
-                            </div>
-                            <div className="flex items-center justify-between border-t border-b border-gray-100 py-3 mb-4 text-sm">
-                              <div className="flex items-center gap-1 text-gray-600">
-                                <Bed size={16} className="text-navy-900" />
-                                <span>{property.beds || 0}</span>
-                              </div>
-                              <div className="flex items-center gap-1 text-gray-600">
-                                <Bath size={16} className="text-navy-900" />
-                                <span>{property.baths || 0}</span>
-                              </div>
-                            </div>
-                            <a
-                              href={`https://wa.me/256775275716?text=${encodeURIComponent(`Hi, I am interested in the property: ${property.title} listed for ${property.price}.`)}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="w-full flex items-center justify-center gap-2 bg-gray-50 text-navy-900 py-3 rounded-xl font-semibold hover:bg-gold-500 transition-colors"
-                            >
-                              Inquire Now <ArrowRight size={16} />
-                            </a>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                    <div className="mt-8 text-center">
-                      <Link
-                        to="/properties"
-                        className="inline-flex items-center gap-2 bg-navy-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-gold-500 hover:text-navy-900 transition-all"
-                      >
-                        View All Properties <ArrowRight size={18} />
                       </Link>
                     </div>
                   </div>

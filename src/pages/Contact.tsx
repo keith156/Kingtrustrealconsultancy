@@ -1,7 +1,29 @@
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 
 export function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "Real Estate Inquiry",
+    message: "",
+  });
+
+  const handleWhatsApp = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const { firstName, lastName, email, subject, message } = formData;
+    const fullMessage = `Hi King Trust,\n\nMy name is ${firstName} ${lastName}.\nEmail: ${email}\nSubject: ${subject}\n\nMessage: ${message}`;
+    const waUrl = `https://wa.me/256775275716?text=${encodeURIComponent(fullMessage)}`;
+    window.open(waUrl, "_blank");
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div className="min-h-screen pb-20 bg-gray-50">
       {/* Header */}
@@ -39,7 +61,10 @@ export function ContactPage() {
                   </label>
                   <input
                     type="text"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all text-black"
                     placeholder="John"
                   />
                 </div>
@@ -49,7 +74,10 @@ export function ContactPage() {
                   </label>
                   <input
                     type="text"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all text-black"
                     placeholder="Doe"
                   />
                 </div>
@@ -57,11 +85,14 @@ export function ContactPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address
+                    Email Address
                 </label>
                 <input
                   type="email"
-                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all text-black"
                   placeholder="john@example.com"
                 />
               </div>
@@ -70,7 +101,12 @@ export function ContactPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Subject
                 </label>
-                <select className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all text-gray-700">
+                <select 
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all text-gray-700"
+                >
                   <option>Real Estate Inquiry</option>
                   <option>Vehicle Sales</option>
                   <option>Tours & Travel</option>
@@ -84,20 +120,21 @@ export function ContactPage() {
                   Message
                 </label>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows={5}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all resize-none"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all resize-none text-black"
                   placeholder="How can we help you?"
                 ></textarea>
               </div>
 
-              <a
-                href={`https://wa.me/256775275716?text=${encodeURIComponent("Hi, I would like to get in touch with King Trust Consultancy.")}`}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={handleWhatsApp}
                 className="w-full flex items-center justify-center bg-navy-900 text-white py-4 rounded-xl font-bold text-lg hover:bg-gold-500 hover:text-navy-900 transition-colors shadow-md"
               >
                 Send Message via WhatsApp
-              </a>
+              </button>
             </form>
           </motion.div>
 

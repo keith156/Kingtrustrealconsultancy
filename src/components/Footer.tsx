@@ -183,12 +183,17 @@ export function Footer() {
           <p>
             © 2026 King Trust Real Consultancy Limited. Registered in Uganda.
           </p>
-          <button
-            onClick={() => setShowLogin(true)}
-            className="mt-4 md:mt-0 text-gray-500 hover:text-gold-500 transition-colors"
-          >
-            Admin Login
-          </button>
+          <div className="flex items-center gap-6 mt-4 md:mt-0">
+            <Link to="/privacy-policy" className="text-gray-500 hover:text-gold-500 transition-colors">
+              Privacy Policy
+            </Link>
+            <button
+              onClick={() => setShowLogin(true)}
+              className="text-gray-500 hover:text-gold-500 transition-colors"
+            >
+              Admin Login
+            </button>
+          </div>
         </div>
       </div>
 
