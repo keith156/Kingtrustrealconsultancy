@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "../lib/utils";
 import { Logo } from "./Logo";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -19,24 +20,39 @@ export function Navbar() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setActiveMobileDropdown(null);
   }, [location.pathname]);
 
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Properties", path: "/properties" },
-    { name: "Vehicles", path: "/vehicles" },
-    { name: "Tours", path: "/tours" },
-    { name: "Construction", path: "/construction" },
-    { name: "Consultation", path: "/consultation" },
-    { name: "Agri-Business", path: "/agriculture" },
-    { name: "Import & Export", path: "/import-export" },
+    {
+      name: "Services",
+      path: "/services",
+      dropdown: [
+        { name: "Construction", path: "/construction" },
+        { name: "Consultation", path: "/consultation" },
+        { name: "Agri-Business", path: "/agriculture" },
+        { name: "Import & Export", path: "/import-export" },
+      ],
+    },
+    {
+      name: "Listings",
+      dropdown: [
+        { name: "Properties", path: "/properties" },
+        { name: "Vehicles", path: "/vehicles" },
+        { name: "Tours", path: "/tours" },
+      ],
+    },
     { name: "Contact", path: "/contact" },
   ];
 
   const isHomePage = location.pathname === "/";
   const isSolid = isScrolled || isMobileMenuOpen || !isHomePage;
+
+  const toggleMobileDropdown = (name: string) => {
+    setActiveMobileDropdown(activeMobileDropdown === name ? null : name);
+  };
 
   return (
     <nav
@@ -66,20 +82,71 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={cn(
-                  "text-sm font-medium tracking-wide transition-colors hover:text-gold-500",
-                  location.pathname === link.path
-                    ? "text-gold-500"
-                    : "text-gray-300",
+              <div key={link.name} className="relative group py-4">
+                {link.dropdown ? (
+                  <div className="flex items-center gap-1 cursor-pointer group-hover:text-gold-500 transition-colors">
+                    {link.path ? (
+                      <Link
+                        to={link.path}
+                        className={cn(
+                          "text-sm font-medium tracking-wide transition-colors",
+                          location.pathname === link.path || link.dropdown.some(d => location.pathname === d.path)
+                            ? "text-gold-500"
+                            : "text-gray-300",
+                        )}
+                      >
+                        {link.name.toUpperCase()}
+                      </Link>
+                    ) : (
+                      <span className={cn(
+                        "text-sm font-medium tracking-wide transition-colors",
+                        link.dropdown.some(d => location.pathname === d.path)
+                          ? "text-gold-500"
+                          : "text-gray-300",
+                      )}>
+                        {link.name.toUpperCase()}
+                      </span>
+                    )}
+                    <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
+                  </div>
+                ) : (
+                  <Link
+                    to={link.path!}
+                    className={cn(
+                      "text-sm font-medium tracking-wide transition-colors hover:text-gold-500 whitespace-nowrap",
+                      location.pathname === link.path
+                        ? "text-gold-500"
+                        : "text-gray-300",
+                    )}
+                  >
+                    {link.name.toUpperCase()}
+                  </Link>
                 )}
-              >
-                {link.name.toUpperCase()}
-              </Link>
+
+                {/* Dropdown Menu */}
+                {link.dropdown && (
+                  <div className="absolute left-0 mt-2 w-56 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                    <div className="bg-navy-900/95 backdrop-blur-md rounded-lg shadow-2xl border border-white/10 overflow-hidden py-2 mt-2">
+                      {link.dropdown.map((item) => (
+                        <Link
+                          key={item.name}
+                          to={item.path}
+                          className={cn(
+                            "block px-4 py-2 text-sm transition-colors hover:bg-gold-500/10 hover:text-gold-500",
+                            location.pathname === item.path
+                              ? "text-gold-500 bg-gold-500/5"
+                              : "text-gray-300",
+                          )}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
 
@@ -96,21 +163,78 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-navy-900 border-t border-navy-800 absolute top-full left-0 w-full shadow-lg">
-          <div className="px-4 pt-2 pb-6 space-y-1">
+        <div className="lg:hidden bg-navy-900 border-t border-navy-800 absolute top-full left-0 w-full shadow-lg h-screen overflow-y-auto">
+          <div className="px-4 pt-2 pb-24 space-y-1">
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={cn(
-                  "block px-3 py-3 text-base font-medium transition-colors",
-                  location.pathname === link.path
-                    ? "text-gold-500 bg-navy-800"
-                    : "text-gray-300 hover:text-gold-500 hover:bg-navy-800",
+              <div key={link.name}>
+                {link.dropdown ? (
+                  <div className="space-y-1">
+                    <button
+                      onClick={() => toggleMobileDropdown(link.name)}
+                      className={cn(
+                        "w-full flex items-center justify-between px-3 py-3 text-base font-medium transition-colors rounded-lg",
+                        activeMobileDropdown === link.name || link.dropdown.some(d => location.pathname === d.path)
+                          ? "text-gold-500 bg-navy-800"
+                          : "text-gray-300 hover:text-gold-500 hover:bg-navy-800",
+                      )}
+                    >
+                      <span className="flex items-center gap-2">
+                        {link.name.toUpperCase()}
+                      </span>
+                      <ChevronDown
+                        size={18}
+                        className={cn(
+                          "transition-transform duration-300",
+                          activeMobileDropdown === link.name && "rotate-180"
+                        )}
+                      />
+                    </button>
+                    {activeMobileDropdown === link.name && (
+                      <div className="bg-navy-950/50 rounded-lg py-1 ml-4 border-l border-navy-800">
+                        {link.path && (
+                          <Link
+                            to={link.path}
+                            className={cn(
+                              "block px-4 py-3 text-sm transition-colors",
+                              location.pathname === link.path
+                                ? "text-gold-500"
+                                : "text-gray-400 hover:text-gold-500",
+                            )}
+                          >
+                            All {link.name}
+                          </Link>
+                        )}
+                        {link.dropdown.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.path}
+                            className={cn(
+                              "block px-4 py-3 text-sm transition-colors",
+                              location.pathname === item.path
+                                ? "text-gold-500"
+                                : "text-gray-400 hover:text-gold-500",
+                            )}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    to={link.path!}
+                    className={cn(
+                      "block px-3 py-3 text-base font-medium transition-colors rounded-lg",
+                      location.pathname === link.path
+                        ? "text-gold-500 bg-navy-800"
+                        : "text-gray-300 hover:text-gold-500 hover:bg-navy-800",
+                    )}
+                  >
+                    {link.name.toUpperCase()}
+                  </Link>
                 )}
-              >
-                {link.name.toUpperCase()}
-              </Link>
+              </div>
             ))}
           </div>
         </div>
