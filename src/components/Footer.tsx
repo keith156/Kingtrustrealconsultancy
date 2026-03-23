@@ -20,7 +20,7 @@ export function Footer() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === "admin" && password === "password") {
+    if (username === "Benson" && password === "benson@kingtrust26") {
       setShowLogin(false);
       setUsername("");
       setPassword("");

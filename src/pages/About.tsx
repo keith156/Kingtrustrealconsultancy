@@ -35,7 +35,7 @@ export function AboutPage() {
             </h2>
             <div className="w-20 h-1 bg-gold-500 mb-8"></div>
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              King Trust Real Consultancy Limited was founded with a singular
+              King Trust Real Consultancy Limited (Ltd) was founded with a singular
               vision: to elevate the standard of professional services in
               Uganda. We recognized a need for a unified, premium approach to
               real estate, vehicle management, and business consultancy.
@@ -55,7 +55,7 @@ export function AboutPage() {
             <div className="absolute inset-0 bg-gold-500 translate-x-4 translate-y-4 rounded-2xl"></div>
             <img
               src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80"
-              alt="Business Meeting"
+              alt="King Trust Real Consultancy Team Collaboration"
               className="relative z-10 rounded-2xl shadow-xl w-full h-auto object-cover"
               referrerPolicy="no-referrer"
             />

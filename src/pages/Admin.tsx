@@ -5,9 +5,9 @@ import imageCompression from 'browser-image-compression';
 import { supabase } from "../lib/supabase";
 
 const LIMITS = {
-  properties: 20,
-  vehicles: 8,
-  tours: 20
+  properties: 25,
+  vehicles: 25,
+  tours: 25
 };
 
 export function AdminPage() {
@@ -95,7 +95,9 @@ export function AdminPage() {
 
     // Check limits for new items
     if (!editingItem && items.length >= LIMITS[activeTab]) {
-      setErrorMessage(`Limit reached! You can only have up to ${LIMITS[activeTab]} ${activeTab}. Please delete an existing item before adding a new one.`);
+      const message = `Upload Limit Reached!\n\nYou can only have up to ${LIMITS[activeTab]} ${activeTab}. Please delete an existing item before adding a new one.`;
+      setErrorMessage(message);
+      window.alert(message);
       setIsSubmitting(false);
       return;
     }

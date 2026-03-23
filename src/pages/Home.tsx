@@ -157,7 +157,7 @@ export function HomePage() {
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80"
-            alt="Hero Background"
+            alt="Luxury Real Estate Portfolio - King Trust Real Consultancy Uganda"
             className="absolute inset-0 w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
@@ -210,7 +210,7 @@ export function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl font-serif font-bold text-navy-900 mb-6">
-              Welcome to King Trust
+              Welcome to King Trust Real Consultancy Ltd
             </h2>
             <div className="w-24 h-1 bg-gold-500 mx-auto mb-8"></div>
             <p className="text-lg text-gray-600 leading-relaxed">
